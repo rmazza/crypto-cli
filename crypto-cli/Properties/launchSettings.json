@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "crypto-cli": {
+      "commandName": "Project",
+      "commandLineArgs": "get -c  btc -p"
+    }
+  }
+}
