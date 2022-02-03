@@ -4,7 +4,13 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 
 namespace messari_api;
-public class MessariClient
+
+internal interface IMessariClient
+{
+    Task<MarketDataResponse> GetAssetMarketDataAsync(string asset);
+}
+
+internal class MessariClient : IMessariClient
 {
     private const string _url = "https://data.messari.io";
     private readonly HttpClient _httpClient;

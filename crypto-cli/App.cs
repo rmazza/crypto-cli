@@ -20,9 +20,9 @@ namespace crypto_cli
 
             await Parser
               .Default
-              .ParseArguments<GetOptions>(args)
+              .ParseArguments<GetCommand>(args)
               .MapResult(
-                  async (GetOptions opts) => (await GetRunner.RunGetAndReturnExitCode(opts)),
+                  async (GetCommand opts) => (await GetRunner.RunGetAndReturnExitCode(opts)),
                   errs => Task.FromResult(1));
         }
     }
