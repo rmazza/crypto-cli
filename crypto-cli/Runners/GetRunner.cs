@@ -1,28 +1,28 @@
-﻿using crypto_cli.Logging;
+﻿using CoinAPI.REST.V1;
+using crypto_cli.Logging;
 using crypto_cli.Options;
 using messari_api;
 using messari_api.Services;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace crypto_cli.Runners
 {
     public class GetRunner 
     {
         private static readonly ILogger _logger = SharedLogger.CreateLogger(nameof(GetRunner));
-        private static readonly IMessariService _messariService;
+        private static readonly CoinApiRestClient _client;
 
-        static GetRunner()
-        {
-            _messariService = new MessariService();
-        }
+        static GetRunner() => _client = new CoinApiRestClient("D1F1DA64-5FE3-4B35-89BE-FA7ED47C5A55");
 
         public static async Task<int> RunGetAndReturnExitCode(GetCommand opts)
         {
             if (IsCommandNotValid(opts))
                 return 0;
 
-            var result = await _messariService.GetAssetMarketDataAsync(opts.Coin);
+            var result = await _client.Exchange_rates_get_specific_rateAsync(opts.Coin.ToUpperInvariant(), "USD");
 
             if (result is null)
             {
@@ -30,7 +30,7 @@ namespace crypto_cli.Runners
             }
             else if (opts.Price)
             {
-                Console.WriteLine($"{result.Data.Symbol}: {result.Data.MarketData.PriceUsd:c}");
+                //Console.WriteLine($"{result.Data.Symbol}: {result.Data.MarketData.PriceUsd:c}");
             }
             else
             {

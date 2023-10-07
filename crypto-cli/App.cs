@@ -3,6 +3,7 @@ using crypto_cli.Logging;
 using crypto_cli.Options;
 using crypto_cli.Runners;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace crypto_cli
 {

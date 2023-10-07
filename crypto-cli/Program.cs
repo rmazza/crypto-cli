@@ -3,6 +3,7 @@ using crypto_cli.Configuration;
 using crypto_cli.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System;
 
 IConfiguration _config = Config.Instance;
 ILogger _logger = SharedLogger.CreateLogger("Program");
